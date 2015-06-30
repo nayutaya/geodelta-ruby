@@ -2,11 +2,19 @@
 
 An implementation of GeoDelta for Ruby.
 
-## Install
+## Overview
 
-TODO:
+TODO
 
-## Licence
+## Installation
+
+TODO
+
+## Author
+
+Yuya Kato (Nayutaya Inc.) <yuyakato@gmail.com>
+
+## License
 
 MIT License
 
