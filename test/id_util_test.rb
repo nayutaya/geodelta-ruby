@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require "test/unit"
+require_relative "./minitest_helper"
 require_relative "../lib/geodelta/id_util"
 
-class GeoDeltaIdUtilTest < Test::Unit::TestCase
+class GeoDeltaIdUtilTest < Minitest::Test
   def setup
     @mod = GeoDelta::IdUtil
   end
