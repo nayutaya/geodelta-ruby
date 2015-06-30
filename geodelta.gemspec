@@ -5,7 +5,7 @@ require "geodelta/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "geodelta"
-  spec.version       = Geodelta::VERSION
+  spec.version       = GeoDelta::VERSION
   spec.authors       = ["Yuya Kato"]
   spec.email         = ["yuyakato@gmail.com"]
 

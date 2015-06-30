@@ -1,6 +1,6 @@
 
 require "geodelta/version"
 
-module Geodelta
+module GeoDelta
   # Your code goes here...
 end
