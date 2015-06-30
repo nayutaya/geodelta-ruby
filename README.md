@@ -8,6 +8,22 @@ TODO
 
 ## Installation
 
+Add this line to your application's Gemfile:
+
+```ruby
+gem "geodelta"
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install geodelta
+
+## Usage
+
 TODO
 
 ## Author
