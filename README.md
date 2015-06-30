@@ -1,5 +1,7 @@
 # geodelta-ruby
 
+[![Circle CI](https://circleci.com/gh/nayutaya/geodelta-ruby.svg?style=shield)](https://circleci.com/gh/nayutaya/geodelta-ruby)
+
 An implementation of GeoDelta for Ruby.
 
 ## Overview
