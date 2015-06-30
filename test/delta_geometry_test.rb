@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require "test/unit"
+require_relative "./minitest_helper"
 require_relative "../lib/geodelta/delta_geometry"
 
-class GeoDeltaDeltaGeometryTest < Test::Unit::TestCase
+class GeoDeltaDeltaGeometryTest < Minitest::Test
   def setup
     @mod = GeoDelta::DeltaGeometry
   end
@@ -233,7 +233,7 @@ class GeoDeltaDeltaGeometryTest < Test::Unit::TestCase
     assert_equal([-3.0, +2.0], @mod.get_lower_sub_delta_distance(2))
     assert_equal([+3.0, +2.0], @mod.get_lower_sub_delta_distance(3))
   end
-  
+
   def test_get_sub_delta_distance
     assert_equal([+0.0, +4.0], @mod.get_sub_delta_distance(true,  1))
     assert_equal([+3.0, -2.0], @mod.get_sub_delta_distance(true,  2))
@@ -324,7 +324,7 @@ class GeoDeltaDeltaGeometryTest < Test::Unit::TestCase
     assert_equal(expected, @mod.get_coordinates([0, 0]))
 
     expected = [
-      [ +0.0,  +4.0], 
+      [ +0.0,  +4.0],
       [ +0.0,  +0.0], # +0.0, -4.0
       [ -3.0,  +6.0], # -3.0, +2.0
       [ +3.0,  +6.0], # +3.0, +2.0
