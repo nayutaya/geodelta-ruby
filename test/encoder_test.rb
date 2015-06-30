@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require "test/unit"
+require_relative "./minitest_helper"
 require_relative "../lib/geodelta/encoder"
 
-class GeoDeltaEncoderTest < Test::Unit::TestCase
+class GeoDeltaEncoderTest < Minitest::Test
   def setup
     @mod = GeoDelta::Encoder
   end
@@ -17,8 +17,8 @@ class GeoDeltaEncoderTest < Test::Unit::TestCase
     assert_equal("T", @mod.encode_world_delta(5))
     assert_equal("S", @mod.encode_world_delta(6))
     assert_equal("R", @mod.encode_world_delta(7))
-    assert_raise(RuntimeError) { @mod.encode_world_delta(-1) }
-    assert_raise(RuntimeError) { @mod.encode_world_delta(8) }
+    assert_raises(RuntimeError) { @mod.encode_world_delta(-1) }
+    assert_raises(RuntimeError) { @mod.encode_world_delta(8) }
   end
 
   def test_decode_world_delta
@@ -30,8 +30,8 @@ class GeoDeltaEncoderTest < Test::Unit::TestCase
     assert_equal(5, @mod.decode_world_delta("T"))
     assert_equal(6, @mod.decode_world_delta("S"))
     assert_equal(7, @mod.decode_world_delta("R"))
-    assert_raise(RuntimeError) { @mod.decode_world_delta("z") }
-    assert_raise(RuntimeError) { @mod.decode_world_delta("A") }
+    assert_raises(RuntimeError) { @mod.decode_world_delta("z") }
+    assert_raises(RuntimeError) { @mod.decode_world_delta("A") }
   end
 
   def test_encode_and_decode_world_delta
@@ -78,9 +78,9 @@ class GeoDeltaEncoderTest < Test::Unit::TestCase
   end
 
   def test_encode_sub_delta__4
-    assert_raise(RuntimeError) { @mod.encode_sub_delta([]) }
-    assert_raise(RuntimeError) { @mod.encode_sub_delta([-1]) }
-    assert_raise(RuntimeError) { @mod.encode_sub_delta([4]) }
+    assert_raises(RuntimeError) { @mod.encode_sub_delta([]) }
+    assert_raises(RuntimeError) { @mod.encode_sub_delta([-1]) }
+    assert_raises(RuntimeError) { @mod.encode_sub_delta([4]) }
   end
 
   def test_decode_sub_delta__1
@@ -117,9 +117,9 @@ class GeoDeltaEncoderTest < Test::Unit::TestCase
   end
 
   def test_decode_sub_delta__4
-    assert_raise(RuntimeError) { @mod.decode_sub_delta("") }
-    assert_raise(RuntimeError) { @mod.decode_sub_delta("a") }
-    assert_raise(RuntimeError) { @mod.decode_sub_delta("Z") }
+    assert_raises(RuntimeError) { @mod.decode_sub_delta("") }
+    assert_raises(RuntimeError) { @mod.decode_sub_delta("a") }
+    assert_raises(RuntimeError) { @mod.decode_sub_delta("Z") }
   end
 
   def test_encode_and_decode_sub_delta__1
@@ -153,7 +153,7 @@ class GeoDeltaEncoderTest < Test::Unit::TestCase
     assert_equal("RP",  @mod.encode([7, 3]))
     assert_equal("RH",  @mod.encode([7, 3, 2]))
     assert_equal("RHM", @mod.encode([7, 3, 2, 1]))
-    assert_raise(RuntimeError) { @mod.encode([]) }
+    assert_raises(RuntimeError) { @mod.encode([]) }
   end
 
   def test_decode
@@ -165,7 +165,7 @@ class GeoDeltaEncoderTest < Test::Unit::TestCase
     assert_equal([7, 3],       @mod.decode("RP"))
     assert_equal([7, 3, 2],    @mod.decode("RH"))
     assert_equal([7, 3, 2, 1], @mod.decode("RHM"))
-    assert_raise(RuntimeError) { @mod.encode("") }
+    assert_raises(RuntimeError) { @mod.encode("") }
   end
 
   def test_encode_and_decode__rush
