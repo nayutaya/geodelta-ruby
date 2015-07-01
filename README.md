@@ -2,6 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/nayutaya/geodelta-ruby/badges/gpa.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby)
 [![Test Coverage](https://codeclimate.com/github/nayutaya/geodelta-ruby/badges/coverage.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby/coverage)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nayutaya/geodelta-ruby/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nayutaya/geodelta-ruby/?branch=master)
 [![Circle CI](https://circleci.com/gh/nayutaya/geodelta-ruby.svg?style=shield)](https://circleci.com/gh/nayutaya/geodelta-ruby)
 [![Gem Version](https://badge.fury.io/rb/geodelta.svg)](http://badge.fury.io/rb/geodelta)
 
