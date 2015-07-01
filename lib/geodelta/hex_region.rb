@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-require_relative "region"
-require_relative "hex_geometry"
+require_relative "./region"
+require_relative "./hex_geometry"
 
 module GeoDelta
   module HexRegion

@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-require_relative "projector"
-require_relative "delta_geometry"
-require_relative "encoder"
+require_relative "./projector"
+require_relative "./delta_geometry"
+require_relative "./encoder"
 
 module GeoDelta
   def self.get_delta_ids(lat, lng, level)

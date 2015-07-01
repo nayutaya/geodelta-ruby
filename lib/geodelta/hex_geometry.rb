@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require_relative "delta_geometry"
+require_relative "./delta_geometry"
 
 module GeoDelta
   module HexGeometry
