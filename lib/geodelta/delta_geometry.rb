@@ -20,19 +20,23 @@ module GeoDelta
     # 指定された座標(x,y)に該当する上向きのサブデルタの番号を返す
     # ただし、0.0 <= x <= +12.0、0.0 <= y <= +12.0
     def self.get_upper_delta_id(x, y)
-      return 3 if y < -2.0 * (x - 6.0)
-      return 2 if y < +2.0 * (x - 6.0)
-      return 1 if y > 6.0
-      return 0
+      case
+      when y < -2.0 * (x - 6.0) then 3
+      when y < +2.0 * (x - 6.0) then 2
+      when y > 6.0              then 1
+      else                           0
+      end
     end
 
     # 指定された座標(x,y)に該当する下向きのサブデルタの番号を返す
     # ただし、0.0 <= x <= +12.0、0.0 <= y <= +12.0
     def self.get_lower_delta_id(x, y)
-      return 3 if y > -2.0 * (x - 12.0)
-      return 2 if y > +2.0 * x
-      return 1 if y < 6.0
-      return 0
+      case
+      when y > -2.0 * (x - 12.0) then 3
+      when y > +2.0 * x          then 2
+      when y < 6.0               then 1
+      else                            0
+      end
     end
 
     # 指定されたワールドデルタが上向きかどうかを返す
