@@ -4,27 +4,27 @@ require_relative "./delta_geometry"
 
 module GeoDelta
   module HexGeometry
+    HEX_POSITION = {
+      [0, 0] => 0,
+      [0, 1] => 3,
+      [1, 0] => 1,
+      [1, 1] => 2,
+      [2, 0] => 4,
+      [2, 1] => 5,
+      [3, 0] => 3,
+      [3, 1] => 0,
+      [4, 0] => 2,
+      [4, 1] => 1,
+      [5, 0] => 5,
+      [5, 1] => 4,
+    }.freeze.tap { |h| h.keys.map(&:freeze) }
+
     def self.get_hex_position(ids)
       unit = get_unit(ids)
       x, y = GeoDelta::DeltaGeometry.get_center(ids)
       ix   = (x / unit * 2.0).floor % 6
       iy   = (y / unit      ).floor % 2
-
-      case [ix, iy]
-      when [0, 0] then return 0
-      when [0, 1] then return 3
-      when [1, 0] then return 1
-      when [1, 1] then return 2
-      when [2, 0] then return 4
-      when [2, 1] then return 5
-      when [3, 0] then return 3
-      when [3, 1] then return 0
-      when [4, 0] then return 2
-      when [4, 1] then return 1
-      when [5, 0] then return 5
-      when [5, 1] then return 4
-      else raise "BUG [#{i}, #{j}]"
-      end
+      return HEX_POSITION[[ix, iy]] || raise("BUG [#{i}, #{j}]")
     end
 
     def self.get_base_delta_ids(ids)
