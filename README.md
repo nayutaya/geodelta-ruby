@@ -1,5 +1,7 @@
 # geodelta-ruby
 
+[![Code Climate](https://codeclimate.com/github/nayutaya/geodelta-ruby/badges/gpa.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby)
+[![Test Coverage](https://codeclimate.com/github/nayutaya/geodelta-ruby/badges/coverage.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby/coverage)
 [![Circle CI](https://circleci.com/gh/nayutaya/geodelta-ruby.svg?style=shield)](https://circleci.com/gh/nayutaya/geodelta-ruby)
 
 An implementation of GeoDelta for Ruby.
