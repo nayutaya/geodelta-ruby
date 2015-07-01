@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require "test/unit"
+require_relative "./minitest_helper"
 require_relative "../lib/geodelta/packer32"
 
-class GeoDeltaPacker32Test < Test::Unit::TestCase
+class GeoDeltaPacker32Test < Minitest::Test
   def setup
     @packer = GeoDelta::Packer32.new
   end
