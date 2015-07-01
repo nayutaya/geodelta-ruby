@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require "test/unit"
+require_relative "./minitest_helper"
 require_relative "../lib/geodelta/projector"
 
-class GeoDeltaProjectorTest < Test::Unit::TestCase
+class GeoDeltaProjectorTest < Minitest::Test
   def setup
     @mod = GeoDelta::Projector
   end
