@@ -17,6 +17,10 @@ module GeoDelta
         end
     end
 
+    def self.get_sub_delta_id(upper, x, y)
+      return (upper ? self.get_upper_delta_id(x, y) : self.get_lower_delta_id(x, y))
+    end
+
     # 指定された座標(x,y)に該当する上向きのサブデルタの番号を返す
     # ただし、0.0 <= x <= +12.0、0.0 <= y <= +12.0
     def self.get_upper_delta_id(x, y)
@@ -71,6 +75,10 @@ module GeoDelta
     TRANSFORM_UPPER_DELTA_X = [-3.0, -3.0, -6.0, -0.0].freeze
     TRANSFORM_UPPER_DELTA_Y = [-0.0, -6.0, -0.0, -0.0].freeze
 
+    def self.transform_sub_delta(upper, id, x, y)
+      return (upper ? self.transform_upper_delta(id, x, y) : self.transform_lower_delta(id, x, y))
+    end
+
     def self.transform_upper_delta(id, x, y)
       xx = (x + TRANSFORM_UPPER_DELTA_X[id]) * 2
       yy = (y + TRANSFORM_UPPER_DELTA_Y[id]) * 2
@@ -92,15 +100,9 @@ module GeoDelta
       upper  = self.upper_world_delta?(ids.last)
 
       (level - 1).times {
-        if upper
-          ids   << self.get_upper_delta_id(xx, yy)
-          xx, yy = self.transform_upper_delta(ids.last, xx, yy)
-          upper  = self.upper_sub_delta?(upper, ids.last)
-        else
-          ids   << self.get_lower_delta_id(xx, yy)
-          xx, yy = self.transform_lower_delta(ids.last, xx, yy)
-          upper  = self.upper_sub_delta?(upper, ids.last)
-        end
+        ids << self.get_sub_delta_id(upper, xx, yy)
+        xx, yy = self.transform_sub_delta(upper, ids.last, xx, yy)
+        upper  = self.upper_sub_delta?(upper, ids.last)
       }
 
       return ids
