@@ -17,22 +17,30 @@ module GeoDelta
         end
     end
 
+    def self.get_sub_delta_id(upper, x, y)
+      return (upper ? self.get_upper_delta_id(x, y) : self.get_lower_delta_id(x, y))
+    end
+
     # 指定された座標(x,y)に該当する上向きのサブデルタの番号を返す
     # ただし、0.0 <= x <= +12.0、0.0 <= y <= +12.0
     def self.get_upper_delta_id(x, y)
-      return 3 if y < -2.0 * (x - 6.0)
-      return 2 if y < +2.0 * (x - 6.0)
-      return 1 if y > 6.0
-      return 0
+      case
+      when y < -2.0 * (x - 6.0) then 3
+      when y < +2.0 * (x - 6.0) then 2
+      when y > 6.0              then 1
+      else                           0
+      end
     end
 
     # 指定された座標(x,y)に該当する下向きのサブデルタの番号を返す
     # ただし、0.0 <= x <= +12.0、0.0 <= y <= +12.0
     def self.get_lower_delta_id(x, y)
-      return 3 if y > -2.0 * (x - 12.0)
-      return 2 if y > +2.0 * x
-      return 1 if y < 6.0
-      return 0
+      case
+      when y > -2.0 * (x - 12.0) then 3
+      when y > +2.0 * x          then 2
+      when y < 6.0               then 1
+      else                            0
+      end
     end
 
     # 指定されたワールドデルタが上向きかどうかを返す
@@ -55,21 +63,34 @@ module GeoDelta
       }
     end
 
+    TRANSFORM_WORLD_DELTA_X = [+6.0, +0.0, -6.0, -12.0,  +6.0,  +0.0,  -6.0, -12.0].freeze
+    TRANSFORM_WORLD_DELTA_Y = [+0.0, +0.0, +0.0,  +0.0, +12.0, +12.0, +12.0, +12.0].freeze
+
     def self.transform_world_delta(id, x, y)
-      xx = (x + [+6.0, +0.0, -6.0, -12.0,  +6.0,  +0.0,  -6.0, -12.0][id]) % 12
-      yy = (y + [+0.0, +0.0, +0.0,  +0.0, +12.0, +12.0, +12.0, +12.0][id]) % 12
+      xx = (x + TRANSFORM_WORLD_DELTA_X[id]) % 12
+      yy = (y + TRANSFORM_WORLD_DELTA_Y[id]) % 12
       return [xx, yy]
+    end
+
+    TRANSFORM_UPPER_DELTA_X = [-3.0, -3.0, -6.0, -0.0].freeze
+    TRANSFORM_UPPER_DELTA_Y = [-0.0, -6.0, -0.0, -0.0].freeze
+
+    def self.transform_sub_delta(upper, id, x, y)
+      return (upper ? self.transform_upper_delta(id, x, y) : self.transform_lower_delta(id, x, y))
     end
 
     def self.transform_upper_delta(id, x, y)
-      xx = (x + [-3.0, -3.0, -6.0, -0.0][id]) * 2
-      yy = (y + [-0.0, -6.0, -0.0, -0.0][id]) * 2
+      xx = (x + TRANSFORM_UPPER_DELTA_X[id]) * 2
+      yy = (y + TRANSFORM_UPPER_DELTA_Y[id]) * 2
       return [xx, yy]
     end
 
+    TRANSFORM_LOWER_DELTA_X = [-3.0, -3.0, -0.0, -6.0].freeze
+    TRANSFORM_LOWER_DELTA_Y = [-6.0, -0.0, -6.0, -6.0].freeze
+
     def self.transform_lower_delta(id, x, y)
-      xx = (x + [-3.0, -3.0, -0.0, -6.0][id]) * 2
-      yy = (y + [-6.0, -0.0, -6.0, -6.0][id]) * 2
+      xx = (x + TRANSFORM_LOWER_DELTA_X[id]) * 2
+      yy = (y + TRANSFORM_LOWER_DELTA_Y[id]) * 2
       return [xx, yy]
     end
 
@@ -79,49 +100,49 @@ module GeoDelta
       upper  = self.upper_world_delta?(ids.last)
 
       (level - 1).times {
-        if upper
-          ids   << self.get_upper_delta_id(xx, yy)
-          xx, yy = self.transform_upper_delta(ids.last, xx, yy)
-          upper  = self.upper_sub_delta?(upper, ids.last)
-        else
-          ids   << self.get_lower_delta_id(xx, yy)
-          xx, yy = self.transform_lower_delta(ids.last, xx, yy)
-          upper  = self.upper_sub_delta?(upper, ids.last)
-        end
+        ids << self.get_sub_delta_id(upper, xx, yy)
+        xx, yy = self.transform_sub_delta(upper, ids.last, xx, yy)
+        upper  = self.upper_sub_delta?(upper, ids.last)
       }
 
       return ids
     end
 
+    WORLD_DELTA_CENTER = {
+      0 => [ +0.0, +8.0],
+      1 => [ +6.0, +4.0],
+      2 => [+12.0, +8.0],
+      3 => [+18.0, +4.0],
+      4 => [ +0.0, -8.0],
+      5 => [ +6.0, -4.0],
+      6 => [+12.0, -8.0],
+      7 => [+18.0, -4.0],
+    }.freeze.tap { |h| h.values.map(&:freeze) }
+
     def self.get_world_delta_center(id)
-      case id
-      when 0 then [ +0.0, +8.0]
-      when 1 then [ +6.0, +4.0]
-      when 2 then [+12.0, +8.0]
-      when 3 then [+18.0, +4.0]
-      when 4 then [ +0.0, -8.0]
-      when 5 then [ +6.0, -4.0]
-      when 6 then [+12.0, -8.0]
-      when 7 then [+18.0, -4.0]
-      end
+      return WORLD_DELTA_CENTER[id]
     end
+
+    UPPER_SUB_DELTA_DISTANCE = {
+      0 => [+0.0, +0.0],
+      1 => [+0.0, +4.0],
+      2 => [+3.0, -2.0],
+      3 => [-3.0, -2.0],
+    }.freeze.tap { |h| h.values.map(&:freeze) }
 
     def self.get_upper_sub_delta_distance(id)
-      case id
-      when 0 then [+0.0, +0.0]
-      when 1 then [+0.0, +4.0]
-      when 2 then [+3.0, -2.0]
-      when 3 then [-3.0, -2.0]
-      end
+      return UPPER_SUB_DELTA_DISTANCE[id]
     end
 
+    LOWER_SUB_DELTA_DISTANCE = {
+      0 => [+0.0, +0.0],
+      1 => [+0.0, -4.0],
+      2 => [-3.0, +2.0],
+      3 => [+3.0, +2.0],
+    }.freeze.tap { |h| h.values.map(&:freeze) }
+
     def self.get_lower_sub_delta_distance(id)
-      case id
-      when 0 then [+0.0, +0.0]
-      when 1 then [+0.0, -4.0]
-      when 2 then [-3.0, +2.0]
-      when 3 then [+3.0, +2.0]
-      end
+      return LOWER_SUB_DELTA_DISTANCE[id]
     end
 
     def self.get_sub_delta_distance(parent_is_upper, id)
@@ -133,21 +154,18 @@ module GeoDelta
     end
 
     def self.get_center(ids)
-      xs, ys = [], []
-      upper  = nil
+      w_id, *s_ids = ids
 
-      ids.each_with_index { |id, index|
-        if index == 0
-          x, y  = self.get_world_delta_center(id)
-          upper = self.upper_world_delta?(id)
-          xs << x
-          ys << y
-        else
-          x, y  = self.get_sub_delta_distance(upper, id)
-          upper = self.upper_sub_delta?(upper, id)
-          xs << (x / (2 ** (index - 1)))
-          ys << (y / (2 ** (index - 1)))
-        end
+      x, y  = self.get_world_delta_center(w_id)
+      upper = self.upper_world_delta?(w_id)
+      xs = [x]
+      ys = [y]
+
+      s_ids.each.with_index { |id, index|
+        x, y  = self.get_sub_delta_distance(upper, id)
+        upper = self.upper_sub_delta?(upper, id)
+        xs << (x / (2 ** index))
+        ys << (y / (2 ** index))
       }
 
       x = xs.sort.inject(0.0, &:+)
