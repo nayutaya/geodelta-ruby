@@ -1,6 +1,4 @@
+# encoding: utf-8
 
 require "geodelta/version"
-
-module GeoDelta
-  # Your code goes here...
-end
+require_relative "geodelta/core"
