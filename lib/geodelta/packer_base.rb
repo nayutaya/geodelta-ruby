@@ -8,8 +8,26 @@ module GeoDelta
       @sub_bits   = sub_bits
       @level_bits = level_bits
 
-      @world_mask = ((1 << @world_bits) - 1)
-      @sub_mask   = ((1 << @sub_bits) - 1)
+      @sub_count   = ((@total_bits - @world_bits - @level_bits - 1) / @sub_bits.to_f).floor
+      @sub_mask    = ((1 << @sub_bits) - 1)
+      @world_mask  = ((1 << @world_bits) - 1)
+      @world_shift = (@sub_count * @sub_bits) + @level_bits
+    end
+
+    def pack_world_delta(id)
+      return id << @world_shift
+    end
+
+    def unpack_world_delta(value)
+      return (value >> @world_shift) & @world_mask
+    end
+
+    def pack_sub_delta(level, id)
+      return id << (@world_shift - ((level - 1) * @sub_bits))
+    end
+
+    def unpack_sub_delta(level, value)
+      return (value >> (@world_shift - ((level - 1) * @sub_bits))) & @sub_mask
     end
 
     def pack_level(level)
