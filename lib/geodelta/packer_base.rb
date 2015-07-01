@@ -14,8 +14,8 @@ module GeoDelta
     end
 
     def unpack_level(value)
-      mask = ((1 << @level_bits) - 1)
-      return value & mask
+      @_level_mask ||= ((1 << @level_bits) - 1)
+      return value & @_level_mask
     end
 
     def pack(ids)

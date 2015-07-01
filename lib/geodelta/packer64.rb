@@ -13,7 +13,8 @@ module GeoDelta
     end
 
     def unpack_world_delta(value)
-      return (value >> 59) & ((1 << @world_bits) - 1)
+      @_world_mask ||= ((1 << @world_bits) - 1)
+      return (value >> 59) & @_world_mask
     end
 
     def pack_sub_delta(level, id)
@@ -21,7 +22,8 @@ module GeoDelta
     end
 
     def unpack_sub_delta(level, value)
-      return (value >> (57 - ((level - 2) * 2))) & ((1 << @sub_bits) - 1)
+      @_sub_mask ||= ((1 << @sub_bits) - 1)
+      return (value >> (57 - ((level - 2) * 2))) & @_sub_mask
     end
   end
 end
