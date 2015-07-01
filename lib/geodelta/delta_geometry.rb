@@ -133,21 +133,18 @@ module GeoDelta
     end
 
     def self.get_center(ids)
-      xs, ys = [], []
-      upper  = nil
+      w_id, *s_ids = ids
 
-      ids.each_with_index { |id, index|
-        if index == 0
-          x, y  = self.get_world_delta_center(id)
-          upper = self.upper_world_delta?(id)
-          xs << x
-          ys << y
-        else
-          x, y  = self.get_sub_delta_distance(upper, id)
-          upper = self.upper_sub_delta?(upper, id)
-          xs << (x / (2 ** (index - 1)))
-          ys << (y / (2 ** (index - 1)))
-        end
+      x, y  = self.get_world_delta_center(w_id)
+      upper = self.upper_world_delta?(w_id)
+      xs = [x]
+      ys = [y]
+
+      s_ids.each.with_index { |id, index|
+        x, y  = self.get_sub_delta_distance(upper, id)
+        upper = self.upper_sub_delta?(upper, id)
+        xs << (x / (2 ** index))
+        ys << (y / (2 ** index))
       }
 
       x = xs.sort.inject(0.0, &:+)
