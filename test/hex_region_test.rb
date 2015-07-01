@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require "test/unit"
+require_relative "./minitest_helper"
 require_relative "../lib/geodelta/hex_region"
 
-class GeoDeltaHexRegionTest < Test::Unit::TestCase
+class GeoDeltaHexRegionTest < Minitest::Test
   def setup
     @mod = GeoDelta::HexRegion
   end
