@@ -7,6 +7,9 @@ module GeoDelta
       @world_bits = world_bits
       @sub_bits   = sub_bits
       @level_bits = level_bits
+
+      @world_mask = ((1 << @world_bits) - 1)
+      @sub_mask   = ((1 << @sub_bits) - 1)
     end
 
     def pack_level(level)
