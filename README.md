@@ -6,7 +6,7 @@
 [![Circle CI](https://img.shields.io/circleci/project/nayutaya/geodelta-ruby.svg)](https://circleci.com/gh/nayutaya/geodelta-ruby)
 [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/nayutaya/geodelta-ruby.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby/coverage)
 [![Code Climate](https://img.shields.io/codeclimate/github/nayutaya/geodelta-ruby.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/nayutaya/geodelta-ruby.svg)](https://scrutinizer-ci.com/g/nayutaya/geodelta-ruby/)
+[![Scrutinizer](https://img.shields.io/scrutinizer/g/nayutaya/geodelta-ruby.svg?label=scrutinizer)](https://scrutinizer-ci.com/g/nayutaya/geodelta-ruby/)
 
 An implementation of GeoDelta for Ruby.
 
