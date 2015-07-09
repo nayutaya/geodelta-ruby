@@ -1,5 +1,6 @@
 # geodelta-ruby
 
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nayutaya/geodelta-ruby/blob/master/LICENSE.txt)
 [![Code Climate](https://codeclimate.com/github/nayutaya/geodelta-ruby/badges/gpa.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby)
 [![Test Coverage](https://codeclimate.com/github/nayutaya/geodelta-ruby/badges/coverage.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby/coverage)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nayutaya/geodelta-ruby/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nayutaya/geodelta-ruby/?branch=master)
