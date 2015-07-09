@@ -1,7 +1,7 @@
 # geodelta-ruby
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nayutaya/geodelta-ruby/blob/master/LICENSE.txt)
-[![Gem Version](https://img.shields.io/gem/v/geodelta.svg)](http://badge.fury.io/rb/geodelta)
+[![Gem Version](https://img.shields.io/gem/v/geodelta.svg)](https://rubygems.org/gems/geodelta)
 [![Gemnasium](https://img.shields.io/gemnasium/nayutaya/geodelta-ruby.svg)](https://gemnasium.com/nayutaya/geodelta-ruby)
 [![Circle CI](https://img.shields.io/circleci/project/nayutaya/geodelta-ruby.svg)](https://circleci.com/gh/nayutaya/geodelta-ruby)
 [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/nayutaya/geodelta-ruby.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby/coverage)
