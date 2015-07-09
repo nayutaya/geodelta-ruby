@@ -1,10 +1,12 @@
 # geodelta-ruby
 
-[![Code Climate](https://codeclimate.com/github/nayutaya/geodelta-ruby/badges/gpa.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby)
-[![Test Coverage](https://codeclimate.com/github/nayutaya/geodelta-ruby/badges/coverage.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby/coverage)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/nayutaya/geodelta-ruby/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/nayutaya/geodelta-ruby/?branch=master)
-[![Circle CI](https://circleci.com/gh/nayutaya/geodelta-ruby.svg?style=shield)](https://circleci.com/gh/nayutaya/geodelta-ruby)
-[![Gem Version](https://badge.fury.io/rb/geodelta.svg)](http://badge.fury.io/rb/geodelta)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nayutaya/geodelta-ruby/blob/master/LICENSE.txt)
+[![Gem Version](https://img.shields.io/gem/v/geodelta.svg)](http://badge.fury.io/rb/geodelta)
+[![Gemnasium](https://img.shields.io/gemnasium/nayutaya/geodelta-ruby.svg)](https://gemnasium.com/nayutaya/geodelta-ruby)
+[![Circle CI](https://img.shields.io/circleci/project/nayutaya/geodelta-ruby.svg)](https://circleci.com/gh/nayutaya/geodelta-ruby)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/nayutaya/geodelta-ruby.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby/coverage)
+[![Code Climate](https://img.shields.io/codeclimate/github/nayutaya/geodelta-ruby.svg)](https://codeclimate.com/github/nayutaya/geodelta-ruby)
+[![Scrutinizer](https://img.shields.io/scrutinizer/g/nayutaya/geodelta-ruby.svg?label=scrutinizer)](https://scrutinizer-ci.com/g/nayutaya/geodelta-ruby/)
 
 An implementation of GeoDelta for Ruby.
 
